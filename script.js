@@ -48,6 +48,22 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach(item => observer.observe(item));
 } else revealItems.forEach(item => item.classList.add("visible"));
 
+// Car collection selector
+const carCollections = [...document.querySelectorAll("[data-car-collection]")];
+document.querySelectorAll("[data-car-filter]").forEach(button => {
+  button.addEventListener("click", () => {
+    const selected = button.dataset.carFilter;
+    document.querySelectorAll("[data-car-filter]").forEach(option => {
+      const active = option === button;
+      option.classList.toggle("active", active);
+      option.setAttribute("aria-pressed", String(active));
+    });
+    carCollections.forEach(collection => {
+      collection.hidden = selected !== "all" && collection.dataset.carCollection !== selected;
+    });
+  });
+});
+
 // Gallery filters
 const galleryItems = [...document.querySelectorAll(".gallery-item")];
 document.querySelectorAll(".filter-btn").forEach(button => {
@@ -67,7 +83,7 @@ const counter = lightbox.querySelector(".lightbox-counter");
 const slideButton = lightbox.querySelector(".slideshow-toggle");
 let currentIndex = 0;
 let slideTimer = null;
-let visibleGallery = () => galleryItems.filter(item => !item.classList.contains("is-hidden"));
+let visibleGallery = () => galleryItems.filter(item => !item.classList.contains("is-hidden") && !item.closest("[data-car-collection]")?.hidden);
 function showImage(index) {
   const items = visibleGallery();
   if (!items.length) return;
