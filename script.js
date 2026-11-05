@@ -143,10 +143,14 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
     return;
   }
   const data = new FormData(event.currentTarget);
-  const subject = encodeURIComponent("ETC PHOTOS enquiry — " + data.get("project"));
+  const extras = data.getAll("extras");
+  const subject = encodeURIComponent("ETC PHOTOS enquiry — " + data.get("package"));
   const message = encodeURIComponent(
     "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
-    "\nProject: " + data.get("project") + "\n\n" + data.get("message")
+    "\nProject: " + data.get("project") +
+    "\nPackage: " + data.get("package") +
+    "\nExtras: " + (extras.length ? extras.join(", ") : "None selected") +
+    "\n\nExtra details:\n" + data.get("message")
   );
   window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
   status.textContent = "Your email app should open with your enquiry ready.";
