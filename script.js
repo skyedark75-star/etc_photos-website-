@@ -1,7 +1,7 @@
 // ETC PHOTOS — update the settings below before publishing.
 const ETC_CONFIG = {
-  contactEmail: "YOUR_EMAIL_HERE",
-  instagramUrl: "https://www.instagram.com/YOUR_INSTAGRAM_HANDLE/"
+  contactEmail: "etcphotosuk@gmail.com",
+  instagramUrl: "https://www.instagram.com/etc_photo5/"
 };
 
 const body = document.body;
