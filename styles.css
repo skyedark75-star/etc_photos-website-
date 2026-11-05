@@ -72,12 +72,12 @@
 /* Personal Behind the Lens story section */
 .about{display:block;padding-top:135px;padding-bottom:145px}
 .about-story-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:8%;align-items:center}
-.about-photo{position:relative;margin:0;min-width:0;max-width:440px;background:var(--paper);overflow:hidden}
-.about-photo img{display:block;width:100%;height:clamp(360px,42vw,500px);object-fit:cover;object-position:center}
+.about-photo{position:relative;margin:0;min-width:0;max-width:110px;background:var(--paper);overflow:hidden}
+.about-photo img{display:block;width:100%;height:clamp(90px,10.5vw,125px);object-fit:cover;object-position:center}
 .about-photo figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:15px;padding:35px 20px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#f4f1e9;font:9px var(--mono);letter-spacing:1px}
 .about-story>.eyebrow{margin-bottom:22px}
 .about-story h2{font-size:clamp(48px,6vw,82px);line-height:1.02;letter-spacing:-.07em;font-weight:500;margin:0 0 32px}
 .about-story-copy{max-width:590px;color:var(--muted);font-size:14px;line-height:1.9}
 .about-story-copy p{margin:0 0 17px}
 .about-signoff{display:inline-block;margin:17px 0 0;padding-bottom:8px;border-bottom:1px solid var(--ink);font:9px var(--mono);letter-spacing:1.3px;color:var(--ink)}
-@media(max-width:760px){.about{padding-top:90px;padding-bottom:100px}.about-story-grid{grid-template-columns:1fr;gap:42px}.about-photo{width:100%;max-width:380px;margin:0 auto}.about-photo img{height:clamp(280px,72vw,360px)}.about-story h2{font-size:58px}.about-story-copy{font-size:13px}}
+@media(max-width:760px){.about{padding-top:90px;padding-bottom:100px}.about-story-grid{grid-template-columns:1fr;gap:42px}.about-photo{width:100%;max-width:95px;margin:0 auto}.about-photo img{height:clamp(70px,18vw,90px)}.about-story h2{font-size:58px}.about-story-copy{font-size:13px}}
