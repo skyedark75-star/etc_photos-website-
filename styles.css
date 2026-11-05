@@ -81,3 +81,9 @@
 .about-story-copy p{margin:0 0 17px}
 .about-signoff{display:inline-block;margin:17px 0 0;padding-bottom:8px;border-bottom:1px solid var(--ink);font:9px var(--mono);letter-spacing:1.3px;color:var(--ink)}
 @media(max-width:760px){.about{padding-top:90px;padding-bottom:100px}.about-story-grid{grid-template-columns:1fr;gap:42px}.about-photo{width:100%;max-width:32px;margin:0 auto}.about-photo img{height:clamp(23px,6vw,30px)}.about-story h2{font-size:58px}.about-story-copy{font-size:13px}}
+
+/* About portrait: enforce compact display size */
+.about-photo{width:160px!important;max-width:160px!important;margin:0!important}
+.about-photo img{width:100%!important;height:auto!important;display:block}
+.about-photo figcaption{padding:18px 8px 7px;font-size:6px;letter-spacing:.5px;gap:4px}
+@media(max-width:760px){.about-photo{width:120px!important;max-width:120px!important;margin:0 auto!important}}
