@@ -17,3 +17,8 @@
 
 /* Preserve each portfolio photograph's original aspect ratio without cropping */
 .gallery-item img,.gallery-large img,.gallery-wide img{height:auto!important;aspect-ratio:auto;object-fit:contain;}
+
+
+/* Tighter, consistent spacing throughout the portfolio while keeping varied image sizes */
+.gallery{gap:12px!important;}
+@media(max-width:650px){.gallery{gap:10px!important;}}
