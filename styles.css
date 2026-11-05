@@ -35,3 +35,12 @@
 .gallery-item img,.gallery-large img,.gallery-wide img{width:100%;height:auto!important;object-fit:contain;}
 .gallery-wide{column-span:all;}
 @media(max-width:650px){.gallery{columns:2;column-gap:6px;}.gallery-item{margin-bottom:6px;}}
+
+
+/* Portfolio collections grouped by vehicle */
+.car-collection-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 24px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+.car-collection-heading .eyebrow{margin:0 0 7px;}
+.car-collection-heading h3{font-size:clamp(28px,3.2vw,44px);line-height:1;letter-spacing:-.055em;font-weight:500;margin:0;}
+.car-collection-heading h3 em{font-family:var(--serif);font-weight:500;}
+.car-collection-heading>span{font:10px var(--mono);letter-spacing:1.2px;color:var(--muted);padding-bottom:3px;}
+@media(max-width:650px){.car-collection-heading{margin-bottom:17px;}.car-collection-heading h3{font-size:32px;}.car-collection-heading>span{font-size:8px;}}
