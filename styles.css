@@ -87,3 +87,10 @@
 .about-photo img{width:100%!important;height:auto!important;display:block}
 .about-photo figcaption{padding:18px 8px 7px;font-size:6px;letter-spacing:.5px;gap:4px}
 @media(max-width:760px){.about-photo{width:120px!important;max-width:120px!important;margin:0 auto!important}}
+
+/* About section: equal photo and story columns */
+.about-story-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:6%!important;align-items:center}
+.about-photo{width:100%!important;max-width:none!important;margin:0!important}
+.about-photo img{width:100%!important;height:auto!important;aspect-ratio:4/3;object-fit:cover}
+.about-photo figcaption{padding:28px 14px 10px;font-size:8px;letter-spacing:.8px}
+@media(max-width:760px){.about-story-grid{grid-template-columns:1fr!important;gap:32px!important}.about-photo{width:100%!important;max-width:100%!important;margin:0!important}.about-photo img{aspect-ratio:4/3;height:auto!important}}
