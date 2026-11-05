@@ -168,7 +168,7 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
   status.textContent = "Your email app should open with your enquiry ready.";
 });
 
-// Keep the extras estimate updated as selections change.
+// Keep the full package estimate updated as selections change.
 const extrasForm = document.querySelector("#contact-form");
 if (extrasForm) {
   const updateExtrasTotal = () => {
@@ -176,9 +176,12 @@ if (extrasForm) {
     const hours = Number(extrasForm.elements.extraHours?.value || 0);
     const locations = Number(extrasForm.elements.extraLocations?.value || 0);
     const express = extrasForm.elements.expressDelivery?.checked ? 10 : 0;
-    const total = (photos / 5 * 10) + (hours * 20) + (locations * 20) + express;
-    const output = document.querySelector("#extras-total");
-    if (output) output.textContent = "£" + total;
+    const extrasCost = (photos / 5 * 10) + (hours * 20) + (locations * 20) + express;
+    const packageValue = extrasForm.elements.package?.value || "";
+    const packageMatch = packageValue.match(/£(\d+)/);
+    const packagePrice = packageMatch ? Number(packageMatch[1]) : null;
+    const output = document.querySelector("#booking-total");
+    if (output) output.textContent = packagePrice === null ? "To be confirmed" : "£" + (packagePrice + extrasCost);
   };
   extrasForm.addEventListener("change", updateExtrasTotal);
   updateExtrasTotal();
