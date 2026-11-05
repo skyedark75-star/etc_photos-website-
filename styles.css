@@ -27,3 +27,11 @@
 /* Compact gallery grid spacing */
 .gallery{gap:7px!important;}
 @media(max-width:650px){.gallery{gap:6px!important;}}
+
+
+/* Masonry-style portfolio: pack images into columns so different heights don't leave blank grid cells */
+.gallery{display:block!important;columns:2;column-gap:7px;}
+.gallery-item{display:inline-block!important;width:100%;break-inside:avoid;margin:0 0 7px;vertical-align:top;}
+.gallery-item img,.gallery-large img,.gallery-wide img{width:100%;height:auto!important;object-fit:contain;}
+.gallery-wide{column-span:all;}
+@media(max-width:650px){.gallery{columns:2;column-gap:6px;}.gallery-item{margin-bottom:6px;}}
