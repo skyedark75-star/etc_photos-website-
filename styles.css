@@ -44,3 +44,18 @@
 .car-collection-heading h3 em{font-family:var(--serif);font-weight:500;}
 .car-collection-heading>span{font:10px var(--mono);letter-spacing:1.2px;color:var(--muted);padding-bottom:3px;}
 @media(max-width:650px){.car-collection-heading{margin-bottom:17px;}.car-collection-heading h3{font-size:32px;}.car-collection-heading>span{font-size:8px;}}
+
+
+/* Car collection selector */
+.car-selector{display:flex;flex-wrap:wrap;gap:10px;margin:-18px 0 38px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.car-select-btn{display:inline-flex;align-items:center;gap:12px;padding:11px 15px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font:10px var(--mono);letter-spacing:1px;transition:background .2s,color .2s,border-color .2s}
+.car-select-btn span{font-size:9px;opacity:.65}
+.car-select-btn:hover,.car-select-btn.active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.car-collection[hidden]{display:none}
+.car-collection+.car-collection{margin-top:55px}
+.car-collection-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:24px}
+.car-collection-heading .eyebrow{margin-bottom:9px}
+.car-collection-heading h3{font-size:clamp(27px,3vw,42px);font-weight:500;letter-spacing:-.06em;line-height:1;margin:0}
+.car-collection-heading h3 em{font-family:var(--serif);font-weight:500}
+.car-collection-heading>span{font:10px var(--mono);letter-spacing:1px;color:var(--muted);padding-bottom:4px}
+@media(max-width:520px){.car-selector{gap:7px;margin-bottom:28px}.car-select-btn{padding:10px 11px;gap:7px;font-size:9px}.car-collection-heading{gap:12px}.car-collection-heading>span{font-size:8px;text-align:right}}
