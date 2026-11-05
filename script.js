@@ -1,7 +1,9 @@
 // ETC PHOTOS — update the settings below before publishing.
 const ETC_CONFIG = {
   contactEmail: "etcphotosuk@gmail.com",
-  instagramUrl: "https://www.instagram.com/etc_photo5/"
+  instagramUrl: "https://www.instagram.com/etc_photo5/",
+  youtubeUrl: "https://www.youtube.com/channel/UCl51-y6dp1DD_OerDpfEDQw",
+  tiktokUrl: "https://www.tiktok.com/@etc_photos"
 };
 
 const body = document.body;
@@ -150,10 +152,13 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
   status.textContent = "Your email app should open with your enquiry ready.";
 });
 
-// Apply the configured Instagram link
-const instagramLink = document.querySelector('.footer-bottom a[href*="instagram"]');
-if (instagramLink && ETC_CONFIG.instagramUrl.includes("YOUR_INSTAGRAM_HANDLE")) {
-  instagramLink.href = "https://www.instagram.com/";
-} else if (instagramLink) {
-  instagramLink.href = ETC_CONFIG.instagramUrl;
-}
+// Apply the configured social profile links
+const socialUrls = {
+  instagram: ETC_CONFIG.instagramUrl,
+  youtube: ETC_CONFIG.youtubeUrl,
+  tiktok: ETC_CONFIG.tiktokUrl
+};
+Object.entries(socialUrls).forEach(([platform, url]) => {
+  const link = document.querySelector(`[data-social="${platform}"]`);
+  if (link && url) link.href = url;
+});
