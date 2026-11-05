@@ -143,18 +143,46 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
     return;
   }
   const data = new FormData(event.currentTarget);
-  const extras = data.getAll("extras");
+  const photoCount = Number(data.get("extraPhotos") || 0);
+  const extraHours = Number(data.get("extraHours") || 0);
+  const extraLocations = Number(data.get("extraLocations") || 0);
+  const express = data.get("expressDelivery") === "yes";
+  const packagePrice = Number((data.get("package").match(/£(\d+)/) || [0, 0])[1]);
+  const extrasCost = (photoCount / 5 * 10) + (extraHours * 20) + (extraLocations * 20) + (express ? 10 : 0);
+  const extras = [];
+  if (photoCount) extras.push(photoCount + " extra edited photos — £" + (photoCount / 5 * 10));
+  if (extraHours) extras.push(extraHours + " extra shooting hour(s) — £" + (extraHours * 20));
+  if (extraLocations) extras.push(extraLocations + " additional location(s) — £" + (extraLocations * 20));
+  if (express) extras.push("Express delivery — £10");
   const subject = encodeURIComponent("ETC PHOTOS enquiry — " + data.get("package"));
   const message = encodeURIComponent(
     "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
     "\nProject: " + data.get("project") +
     "\nPackage: " + data.get("package") +
     "\nExtras: " + (extras.length ? extras.join(", ") : "None selected") +
+    "\nExtras total: £" + extrasCost +
+    "\nEstimated total: £" + (packagePrice + extrasCost) +
     "\n\nExtra details:\n" + data.get("message")
   );
   window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
   status.textContent = "Your email app should open with your enquiry ready.";
 });
+
+// Keep the extras estimate updated as selections change.
+const extrasForm = document.querySelector("#contact-form");
+if (extrasForm) {
+  const updateExtrasTotal = () => {
+    const photos = Number(extrasForm.elements.extraPhotos?.value || 0);
+    const hours = Number(extrasForm.elements.extraHours?.value || 0);
+    const locations = Number(extrasForm.elements.extraLocations?.value || 0);
+    const express = extrasForm.elements.expressDelivery?.checked ? 10 : 0;
+    const total = (photos / 5 * 10) + (hours * 20) + (locations * 20) + express;
+    const output = document.querySelector("#extras-total");
+    if (output) output.textContent = "£" + total;
+  };
+  extrasForm.addEventListener("change", updateExtrasTotal);
+  updateExtrasTotal();
+}
 
 // Apply the configured social profile links
 const socialUrls = {
