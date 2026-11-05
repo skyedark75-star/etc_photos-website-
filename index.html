@@ -170,11 +170,12 @@
         <div class="form-row"><label for="email">EMAIL ADDRESS</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
         <div class="form-row"><label for="project">WHAT'S THE PROJECT?</label><select id="project" name="project"><option>Automotive photoshoot</option><option>Event / car meet</option><option>Content / collaboration</option><option>Something else</option></select></div>
         <div class="form-row"><label for="package">CHOOSE YOUR PACKAGE</label><select id="package" name="package" required><option value="THE STANDARD — £50">THE STANDARD — £50</option><option value="THE EXTENDED — £100">THE EXTENDED — £100 (BEST VALUE)</option><option value="THE SIGNATURE — £200">THE SIGNATURE — £200</option><option value="Not sure yet">Not sure yet</option></select></div>
-        <fieldset class="extras-row"><legend>OPTIONAL EXTRAS</legend>
-          <label><input type="checkbox" name="extras" value="5 extra edited photos — £10"> 5 extra edited photos — £10</label>
-          <label><input type="checkbox" name="extras" value="Extra shooting time (per hour) — £20"> Extra shooting time (per hour) — £20</label>
-          <label><input type="checkbox" name="extras" value="Additional location — £20"> Additional location — £20</label>
-          <label><input type="checkbox" name="extras" value="Express delivery — £10"> Express delivery — £10</label>
+        <fieldset class="extras-row"><legend>CHOOSE YOUR EXTRAS</legend>
+          <div class="extra-choice"><label for="extra-photos">Extra edited photos <span>5 for £10</span></label><select id="extra-photos" name="extraPhotos"><option value="0">No extra photos</option><option value="5">5 extra photos — £10</option><option value="10">10 extra photos — £20</option></select></div>
+          <div class="extra-choice"><label for="extra-hours">Extra shooting time <span>£20 per hour</span></label><select id="extra-hours" name="extraHours"><option value="0">No extra time</option><option value="1">1 extra hour — £20</option><option value="2">2 extra hours — £40</option></select></div>
+          <div class="extra-choice"><label for="extra-locations">Additional locations <span>£20 per location</span></label><select id="extra-locations" name="extraLocations"><option value="0">No extra locations</option><option value="1">1 extra location — £20</option><option value="2">2 extra locations — £40</option></select></div>
+          <div class="extra-choice extra-express"><label for="express-delivery">Express delivery <span>£10</span></label><label class="extra-toggle"><input id="express-delivery" type="checkbox" name="expressDelivery" value="yes"> Add express delivery</label></div>
+          <p class="extras-total">Extras total: <strong id="extras-total">£0</strong></p>
         </fieldset>
         <div class="form-row"><label for="message">EXTRA DETAILS</label><textarea id="message" name="message" rows="4" placeholder="Tell us about your car, preferred date, location and anything else you'd like us to know..." required></textarea></div>
         <button class="submit-button" type="submit">SEND AN ENQUIRY <span>↗</span></button>
