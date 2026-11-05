@@ -146,21 +146,28 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
   const photoCount = Number(data.get("extraPhotos") || 0);
   const extraHours = Number(data.get("extraHours") || 0);
   const extraLocations = Number(data.get("extraLocations") || 0);
+  const extraCars = Number(data.get("extraCars") || 0);
   const express = data.get("expressDelivery") === "yes";
-  const packagePrice = Number((data.get("package").match(/£(\d+)/) || [0, 0])[1]);
-  const extrasCost = (photoCount / 5 * 10) + (extraHours * 20) + (extraLocations * 20) + (express ? 10 : 0);
+  const packageValue = data.get("package") || "Not sure yet";
+  const packageMatch = packageValue.match(/£(\d+)/);
+  const packagePrice = packageMatch ? Number(packageMatch[1]) : null;
+  const extrasCost = (photoCount / 5 * 10) + (extraHours * 20) + (extraLocations * 20) + (extraCars * 25) + (express ? 10 : 0);
   const extras = [];
   if (photoCount) extras.push(photoCount + " extra edited photos — £" + (photoCount / 5 * 10));
   if (extraHours) extras.push(extraHours + " extra shooting hour(s) — £" + (extraHours * 20));
   if (extraLocations) extras.push(extraLocations + " additional location(s) — £" + (extraLocations * 20));
+  if (extraCars) extras.push(extraCars + " additional car(s) — £" + (extraCars * 25));
   if (express) extras.push("Express delivery — £10");
-  const subject = encodeURIComponent("ETC PHOTOS enquiry — " + data.get("package"));
+  const subject = encodeURIComponent("ETC PHOTOS enquiry — " + packageValue);
+  const total = packagePrice === null ? "To be confirmed" : "£" + (packagePrice + extrasCost);
   const message = encodeURIComponent(
     "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
-    "\nProject: " + data.get("project") +
-    "\nTotal price: " + (packagePrice === null ? "To be confirmed" : "£" + (packagePrice + extrasCost)) +
+    "\nPackage: " + packageValue +
+    "\nExtras: " + (extras.length ? extras.join(", ") : "None selected") +
+    "\nTotal price: " + total +
     "\n\nExtra details:\n" + data.get("message")
-  );  window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
+  );
+  window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
   status.textContent = "Your email app should open with your enquiry ready.";
 });
 
@@ -171,8 +178,9 @@ if (extrasForm) {
     const photos = Number(extrasForm.elements.extraPhotos?.value || 0);
     const hours = Number(extrasForm.elements.extraHours?.value || 0);
     const locations = Number(extrasForm.elements.extraLocations?.value || 0);
+    const cars = Number(extrasForm.elements.extraCars?.value || 0);
     const express = extrasForm.elements.expressDelivery?.checked ? 10 : 0;
-    const extrasCost = (photos / 5 * 10) + (hours * 20) + (locations * 20) + express;
+    const extrasCost = (photos / 5 * 10) + (hours * 20) + (locations * 20) + (cars * 25) + express;
     const packageValue = extrasForm.elements.package?.value || "";
     const packageMatch = packageValue.match(/£(\d+)/);
     const packagePrice = packageMatch ? Number(packageMatch[1]) : null;
