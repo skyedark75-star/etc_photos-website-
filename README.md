@@ -1,4 +1,4 @@
-# ETC PHOTOS — Life Through Optics
+# ETC PHOTOS
 
 A responsive, editorial-style automotive photography portfolio.
 
