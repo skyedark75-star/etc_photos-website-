@@ -22,3 +22,8 @@
 /* Tighter, consistent spacing throughout the portfolio while keeping varied image sizes */
 .gallery{gap:12px!important;}
 @media(max-width:650px){.gallery{gap:10px!important;}}
+
+
+/* Compact gallery grid spacing */
+.gallery{gap:7px!important;}
+@media(max-width:650px){.gallery{gap:6px!important;}}
