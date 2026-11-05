@@ -48,19 +48,20 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach(item => observer.observe(item));
 } else revealItems.forEach(item => item.classList.add("visible"));
 
-// Car collection selector
-const carCollections = [...document.querySelectorAll("[data-car-collection]")];
-document.querySelectorAll("[data-car-filter]").forEach(button => {
-  button.addEventListener("click", () => {
-    const selected = button.dataset.carFilter;
-    document.querySelectorAll("[data-car-filter]").forEach(option => {
-      const active = option === button;
-      option.classList.toggle("active", active);
-      option.setAttribute("aria-pressed", String(active));
-    });
-    carCollections.forEach(collection => {
-      collection.hidden = selected !== "all" && collection.dataset.carCollection !== selected;
-    });
+// Car collection selector — delegated click handling keeps the controls reliable.
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-car-filter]");
+  if (!button) return;
+  const selected = button.dataset.carFilter;
+  document.querySelectorAll("[data-car-filter]").forEach(option => {
+    const active = option === button;
+    option.classList.toggle("active", active);
+    option.setAttribute("aria-pressed", String(active));
+  });
+  document.querySelectorAll("[data-car-collection]").forEach(collection => {
+    const hide = selected !== "all" && collection.dataset.carCollection !== selected;
+    collection.classList.toggle("car-hidden", hide);
+    collection.setAttribute("aria-hidden", String(hide));
   });
 });
 
@@ -83,7 +84,7 @@ const counter = lightbox.querySelector(".lightbox-counter");
 const slideButton = lightbox.querySelector(".slideshow-toggle");
 let currentIndex = 0;
 let slideTimer = null;
-let visibleGallery = () => galleryItems.filter(item => !item.classList.contains("is-hidden") && !item.closest("[data-car-collection]")?.hidden);
+let visibleGallery = () => galleryItems.filter(item => !item.classList.contains("is-hidden") && !item.closest("[data-car-collection]")?.classList.contains("car-hidden"));
 function showImage(index) {
   const items = visibleGallery();
   if (!items.length) return;
