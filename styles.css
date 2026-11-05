@@ -107,3 +107,14 @@
 .extras-row legend{padding:0 0 10px;color:#aaa69d;font:10px var(--mono);letter-spacing:1px}
 .extras-row label{display:flex;align-items:center;gap:10px;color:#f0eee9;font-size:12px;cursor:pointer}
 .extras-row input{accent-color:#b9ae9c;width:15px;height:15px;margin:0}
+
+/* Refined add-on picker: compact, editorial selection cards */
+.extras-row{border:0!important;padding:4px 0 0!important;margin:0!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px!important}
+.extras-row legend{grid-column:1/-1;padding:0 0 5px!important;margin-bottom:2px;color:#aaa69d;font:9px var(--mono)!important;letter-spacing:1.2px}
+.extras-row label{min-height:54px;padding:12px 13px;border:1px solid rgba(239,237,231,.2);display:flex;align-items:center;gap:10px;color:#d8d5ce;font-size:11px!important;line-height:1.45;transition:border-color .2s,background .2s;cursor:pointer}
+.extras-row label:has(input:checked){border-color:#b9ae9c;background:rgba(185,174,156,.09);color:#f0eee9}
+.extras-row input{appearance:none;-webkit-appearance:none;flex:0 0 15px;width:15px!important;height:15px!important;border:1px solid #88847c;border-radius:2px;background:transparent;display:grid;place-content:center;margin:0!important;cursor:pointer}
+.extras-row input:checked{background:#b9ae9c;border-color:#b9ae9c}
+.extras-row input:checked::after{content:"✓";font:11px Arial,sans-serif;color:#171715;line-height:1}
+.extras-row input:focus-visible{outline:2px solid #b9ae9c;outline-offset:3px}
+@media(max-width:650px){.extras-row{grid-template-columns:1fr!important;gap:8px!important}.extras-row label{min-height:48px}}
