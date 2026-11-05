@@ -158,13 +158,9 @@ document.querySelector("#contact-form").addEventListener("submit", event => {
   const message = encodeURIComponent(
     "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
     "\nProject: " + data.get("project") +
-    "\nPackage: " + data.get("package") +
-    "\nExtras: " + (extras.length ? extras.join(", ") : "None selected") +
-    "\nExtras total: £" + extrasCost +
-    "\nEstimated total: £" + (packagePrice + extrasCost) +
+    "\nTotal price: " + (packagePrice === null ? "To be confirmed" : "£" + (packagePrice + extrasCost)) +
     "\n\nExtra details:\n" + data.get("message")
-  );
-  window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
+  );  window.location.href = "mailto:" + ETC_CONFIG.contactEmail + "?subject=" + subject + "&body=" + message;
   status.textContent = "Your email app should open with your enquiry ready.";
 });
 
