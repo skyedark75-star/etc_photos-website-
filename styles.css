@@ -10,3 +10,6 @@
 /* Keep all photography in full colour */
 .hero-image,.gallery-item img,.manifesto-image,.journal-photo{filter:none!important}
 .gallery-item:hover img,.journal-card:hover .journal-photo{filter:none!important}
+
+/* Cinematic story-led homepage refinements */
+.hero{height:min(900px,calc(100svh - 78px));min-height:650px}.hero-image{background-position:center 56%;transform:scale(1.07);animation:heroIn 2.2s cubic-bezier(.2,.7,.2,1) forwards}.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.76),rgba(0,0,0,.22) 62%,rgba(0,0,0,.08)),linear-gradient(0deg,rgba(0,0,0,.58),transparent 55%)}.hero-content{top:25%}.hero-bottom{margin-top:58px}.intro{padding-top:165px;padding-bottom:165px}.work-section{padding-top:115px;padding-bottom:150px}.manifesto{min-height:720px}.manifesto-image{opacity:.52}.journal{padding-top:115px;padding-bottom:145px}@media(max-width:650px){.hero{min-height:680px;height:calc(92svh - 65px)}.hero-content{top:29%}.hero-bottom{margin-top:42px}.intro{padding-top:105px;padding-bottom:110px}.work-section{padding-top:80px;padding-bottom:95px}.manifesto{min-height:620px}.journal{padding-top:85px;padding-bottom:95px}}
