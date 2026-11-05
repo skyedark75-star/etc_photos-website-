@@ -59,3 +59,9 @@
 .car-collection-heading h3 em{font-family:var(--serif);font-weight:500}
 .car-collection-heading>span{font:10px var(--mono);letter-spacing:1px;color:var(--muted);padding-bottom:4px}
 @media(max-width:520px){.car-selector{gap:7px;margin-bottom:28px}.car-select-btn{padding:10px 11px;gap:7px;font-size:9px}.car-collection-heading{gap:12px}.car-collection-heading>span{font-size:8px;text-align:right}}
+
+
+/* Ensure car filters visibly switch collections on every screen size */
+.car-selector{position:relative;z-index:2;pointer-events:auto}
+.car-select-btn{position:relative;z-index:3;pointer-events:auto;touch-action:manipulation}
+.car-collection.car-hidden{display:none!important}
