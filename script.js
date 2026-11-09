@@ -193,18 +193,36 @@ if (extrasForm) {
   updateExtrasTotal();
 }
 
-// Homepage hero slideshow using the latest uploaded hero shots.
+// Homepage hero slideshow. Preload each image before starting the fade so
+// slower mobile connections never reveal an unloaded image mid-transition.
 const heroImage = document.querySelector(".hero-image");
 const heroSlides = ["images/hero/alpine A110R (4 of 19).webp","images/hero/alpine A110R (7 of 19).webp","images/hero/alpine A110R (11 of 19).webp","images/hero/alpine A110R (12 of 19).webp","images/hero/alpine A110R (17 of 19).webp","images/hero/alpine A110R (19 of 19).webp","images/hero/feista ST and Nissian 350Z (1 of 26).webp"];
 if (heroImage && heroSlides.length > 1) {
   let heroSlideIndex = 0;
+  const heroPreloads = heroSlides.map(src => {
+    const image = new Image();
+    image.src = src;
+    return image;
+  });
+
   window.setInterval(() => {
-    heroImage.style.opacity = "0";
-    window.setTimeout(() => {
-      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-      heroImage.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
-      heroImage.style.opacity = "1";
-    }, 550);
+    const nextIndex = (heroSlideIndex + 1) % heroSlides.length;
+    const nextImage = heroPreloads[nextIndex];
+
+    const fadeToNextSlide = () => {
+      heroImage.style.opacity = "0";
+      window.setTimeout(() => {
+        heroSlideIndex = nextIndex;
+        heroImage.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
+        heroImage.style.opacity = "1";
+      }, 550);
+    };
+
+    if (nextImage.complete && nextImage.naturalWidth > 0) {
+      fadeToNextSlide();
+    } else {
+      nextImage.addEventListener("load", fadeToNextSlide, { once: true });
+    }
   }, 6500);
 }
 
