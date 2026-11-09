@@ -145,3 +145,6 @@
 /* Extra-car option spans the full width beneath the 2x2 extras grid */
 .extra-cars{grid-column:1/-1}
 @media(max-width:650px){.extra-cars{grid-column:1/-1}}
+
+/* Match the Alpine slideshow's crossfade in the second hero section. */
+.manifesto-image{transition:opacity .55s ease;}
