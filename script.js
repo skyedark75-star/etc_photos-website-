@@ -193,11 +193,22 @@ if (extrasForm) {
   updateExtrasTotal();
 }
 
-// Homepage hero slideshow. Preload each image before starting the fade so
-// slower mobile connections never reveal an unloaded image mid-transition.
-const heroImage = document.querySelector(".hero-image");
-const heroSlides = ["images/hero/alpine A110R (12 of 19).webp"];
-if (heroImage && heroSlides.length > 1) {
+// Homepage hero slideshow. Cycle through every Alpine photograph in images/hero.
+// Both large hero sections share the same image and change together every 18 seconds.
+const heroSlides = [
+  "images/hero/alpine A110R (4 of 19).webp",
+  "images/hero/alpine A110R (7 of 19).webp",
+  "images/hero/alpine A110R (11 of 19).webp",
+  "images/hero/alpine A110R (12 of 19).webp",
+  "images/hero/alpine A110R (17 of 19).webp",
+  "images/hero/alpine A110R (19 of 19).webp"
+];
+const heroSurfaces = [
+  { element: document.querySelector(".hero-image"), position: index => index === 3 ? "center 75%" : "center 56%" },
+  { element: document.querySelector(".manifesto-image"), position: () => "center center" }
+].filter(surface => surface.element);
+
+if (heroSurfaces.length) {
   let heroSlideIndex = 0;
   const heroPreloads = heroSlides.map(src => {
     const image = new Image();
@@ -210,16 +221,16 @@ if (heroImage && heroSlides.length > 1) {
     const nextImage = heroPreloads[nextIndex];
 
     const fadeToNextSlide = () => {
-      heroImage.style.opacity = "0";
+      heroSurfaces.forEach(({ element }) => { element.style.opacity = "0"; });
       window.setTimeout(() => {
         heroSlideIndex = nextIndex;
-        heroImage.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
-        // Keep the original cover crop, but shift slide 12 down to feature
-        // the lower third of the photograph in the hero frame.
-        heroImage.style.backgroundSize = "cover";
-        heroImage.style.backgroundPosition = nextIndex === 3 ? "center 75%" : "center 56%";
-        heroImage.style.backgroundRepeat = "no-repeat";
-        heroImage.style.opacity = "1";
+        heroSurfaces.forEach(({ element, position }) => {
+          element.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
+          element.style.backgroundSize = "cover";
+          element.style.backgroundPosition = position(heroSlideIndex);
+          element.style.backgroundRepeat = "no-repeat";
+          element.style.opacity = element.classList.contains("manifesto-image") ? "0.52" : "1";
+        });
       }, 550);
     };
 
@@ -228,7 +239,7 @@ if (heroImage && heroSlides.length > 1) {
     } else {
       nextImage.addEventListener("load", fadeToNextSlide, { once: true });
     }
-  }, 6500);
+  }, 18000);
 }
 
 // Apply the configured social profile links
