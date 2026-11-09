@@ -61,7 +61,9 @@ document.addEventListener("click", event => {
     option.setAttribute("aria-pressed", String(active));
   });
   document.querySelectorAll("[data-car-collection]").forEach(collection => {
-    const hide = selected !== "all" && collection.dataset.carCollection !== selected;
+    const hide = selected === "all"
+      ? collection.dataset.carCollection === "featured"
+      : collection.dataset.carCollection !== selected;
     collection.classList.toggle("car-hidden", hide);
     collection.setAttribute("aria-hidden", String(hide));
   });
