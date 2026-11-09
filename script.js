@@ -214,9 +214,10 @@ if (heroImage && heroSlides.length > 1) {
       window.setTimeout(() => {
         heroSlideIndex = nextIndex;
         heroImage.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
-        // Slide 12 is framed to show the complete Alpine; contain it rather than cropping it.
-        heroImage.style.backgroundSize = nextIndex === 3 ? "contain" : "cover";
-        heroImage.style.backgroundPosition = "center";
+        // Keep the original cover crop, but shift slide 12 down to feature
+        // the lower third of the photograph in the hero frame.
+        heroImage.style.backgroundSize = "cover";
+        heroImage.style.backgroundPosition = nextIndex === 3 ? "center 75%" : "center 56%";
         heroImage.style.backgroundRepeat = "no-repeat";
         heroImage.style.opacity = "1";
       }, 550);
