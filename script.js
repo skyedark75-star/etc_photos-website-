@@ -196,7 +196,7 @@ if (extrasForm) {
 // Homepage hero slideshow. Preload each image before starting the fade so
 // slower mobile connections never reveal an unloaded image mid-transition.
 const heroImage = document.querySelector(".hero-image");
-const heroSlides = ["images/hero/alpine A110R (4 of 19).webp","images/hero/alpine A110R (7 of 19).webp","images/hero/alpine A110R (11 of 19).webp","images/hero/alpine A110R (12 of 19).webp","images/hero/alpine A110R (17 of 19).webp","images/hero/alpine A110R (19 of 19).webp","images/hero/feista ST and Nissian 350Z (1 of 26).webp"];
+const heroSlides = ["images/hero/alpine A110R (12 of 19).webp"];
 if (heroImage && heroSlides.length > 1) {
   let heroSlideIndex = 0;
   const heroPreloads = heroSlides.map(src => {
