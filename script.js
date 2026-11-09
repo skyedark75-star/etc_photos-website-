@@ -191,6 +191,21 @@ if (extrasForm) {
   updateExtrasTotal();
 }
 
+// Homepage hero slideshow using the latest uploaded hero shots.
+const heroImage = document.querySelector(".hero-image");
+const heroSlides = ["images/hero/alpine A110R (4 of 19).webp","images/hero/alpine A110R (7 of 19).webp","images/hero/alpine A110R (11 of 19).webp","images/hero/alpine A110R (12 of 19).webp","images/hero/alpine A110R (17 of 19).webp","images/hero/alpine A110R (19 of 19).webp","images/hero/feista ST and Nissian 350Z (1 of 26).webp"];
+if (heroImage && heroSlides.length > 1) {
+  let heroSlideIndex = 0;
+  window.setInterval(() => {
+    heroImage.style.opacity = "0";
+    window.setTimeout(() => {
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroImage.style.backgroundImage = 'url("' + heroSlides[heroSlideIndex] + '")';
+      heroImage.style.opacity = "1";
+    }, 550);
+  }, 6500);
+}
+
 // Apply the configured social profile links
 const socialUrls = {
   instagram: ETC_CONFIG.instagramUrl,
